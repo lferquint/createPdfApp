@@ -1,0 +1,64 @@
+{
+    "clientData": {
+        "name": "Fernando",
+        "company" : "Vrintex",
+        "tel" : "55 2049 1444",
+        "obra": "Ciudad de Mexico"
+    },
+    "products": [
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        },
+        {
+            "name": "Piso",
+            "model": "Gerflor model A",
+            "cantidad": 100,
+            "color": "azul"
+        }
+    ]
+}

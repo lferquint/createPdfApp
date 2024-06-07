@@ -1,0 +1,38 @@
+{
+    "pisos": [
+        {
+            "model": "Gerflor model A",
+            "description": "Piso conductivo marca gerflor de 2mm espesor, bla, bla, bla",
+            "price": 450,
+            "colors": ["azul", "verde", "beige"],
+            "unidades": "m2"
+        }, 
+        {
+            "model": "Gerflor model B",
+            "description": "Piso conductivo marca gerflor de 2mm espesor, bla, bla, bla",
+            "price": 400,
+            "colors": ["azul", "verde", "beige"],
+            "unidades": "m2"
+
+        }
+    ], 
+    "protector" : [
+        {
+            "model": "NH mod vr615",
+            "description": "Protector contra camillas modelo vdasflkj asdklf ak ñls",
+            "price": 450,
+            "colors": ["azul", "verde", "beige"],
+            "unidades": "ml"
+
+
+        }, 
+        {
+            "model": "Nh mode vr-120",
+            "description": "Esquineros blanalfnlkasd faldf",
+            "price": 600,
+            "colors": ["azul", "verde", "beige"],
+            "unidades": "ml"
+
+        }
+    ]
+}
