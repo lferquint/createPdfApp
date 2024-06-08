@@ -60,5 +60,8 @@
             "cantidad": 100,
             "color": "azul"
         }
-    ]
+    ],
+    "otherData": {
+        "tiempoDeEntrega": "3 a 4 dias posteriores al pago"
+    }
 }

@@ -2,7 +2,7 @@ import PdfDocument from 'pdfkit-table';
 import generateListProducts from "../utils/generateListProducts.js";
 import doDate from '../utils/doDate.js';
 import formateadorMXN from '../utils/formateadorMXN.js';
-import calculateSubTotal from '../utils/calculateSubTotal.js';
+import {calculateSubTotal, calculateIVA, calculateTotal} from '../utils/calculateTotales.js';
 
 async function makePdf(objConfig, res){
     const doc = new PdfDocument();
@@ -28,10 +28,10 @@ async function makePdf(objConfig, res){
         .strokeColor('gray')
         .stroke();
     
-    doc.image('./img/image.jpeg' , 390, topPosition ,{
+    doc.image('./img/image.png' , 390, topPosition + 25 ,{
         // fit: [100, 100],
         width: 150,
-        height: 80
+
     });
     doc.fontSize(6).fillColor('black').text(
         "San Francisco No. 9, Col. San Jerónimo Aculco, D.F.",  
@@ -76,10 +76,10 @@ async function makePdf(objConfig, res){
     doc.moveDown().text(
         `Obra: ${objConfig.clientData.obra}`
     );
-    doc.image('./img/image.jpeg',{
-        // fit: [100, 150],
-        width: 150,
-    }); 
+    // doc.image('./img/image.jpeg',{
+    //     // fit: [100, 150],
+    //     width: 150,
+    // }); 
 
 
     // // Tener cuidado con esto (inicio) --------------------------------------------------------------------
@@ -100,17 +100,28 @@ async function makePdf(objConfig, res){
     };
 
     //Aqui hace falta un await
-    await doc.moveDown().moveDown().moveDown().moveDown().moveDown().moveDown().moveDown().moveDown().moveDown().moveDown().table(table, { 
+    await doc.moveDown().moveDown().moveDown().table(table, { 
         width: 475,
         columnsSize: [79.16, 120.84, 58.32, 58.32, 79.16, 79.16 ]
     })
     // // Tener cuidado con esto (final) -----------------------------------------------------------------------
 
-    doc.text(`Subtotal ${formateadorMXN.format(calculateSubTotal(objConfig.products))}`, {
+    doc.font('Helvetica-Bold').text(`Subtotal ${formateadorMXN.format(calculateSubTotal(objConfig.products))}`, {
+        align: 'right',
+        lineGap: 5
+    })
+    doc.text(`IVA ${formateadorMXN.format(calculateIVA(calculateSubTotal(objConfig.products)))}`, {
+        align: 'right',
+        lineGap: 5
+
+    })
+    doc.text(`TOTAL ${formateadorMXN.format(calculateTotal(calculateSubTotal(objConfig.products)))}`, {
         align: 'right'
     })
+    doc.text('TIEMPO DE ENTREGA:')
+    doc.font('Helvetica').text(`${objConfig.otherData.tiempoDeEntrega}`)
 
-    doc.moveDown().moveDown().moveDown();
+    doc.moveDown().moveDown().moveDown().moveDown().moveDown();
     doc.fillColor('black').fontSize(10).font('Helvetica-Bold').text('CONDICIONES DE VENTA:');
     doc.text('Nuestros precios son más IVA.');
     doc.text('Tiempo de entrega; el especificado.');
@@ -121,10 +132,10 @@ async function makePdf(objConfig, res){
     doc.text('Precios sujetos a cambio sin previo aviso.');
     doc.text('Envios foraneos corren a cuenta y riego del cliente.');
 
-    doc.moveDown().moveDown().moveDown().text('Atentamente:', {
+    doc.moveDown().moveDown().moveDown().moveDown().text('Atentamente:', {
         align: 'center'
     });
-    doc.text('Elias Moreno Garay', {
+    doc.moveDown().font('Helvetica').text('Elias Moreno Garay', {
         align: 'center'
     });
     doc.pipe(res);
