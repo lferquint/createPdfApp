@@ -6,10 +6,8 @@ import {calculateSubTotal, calculateIVA, calculateTotal} from '../utils/calculat
 
 async function makePdf(objConfig, res){
     const doc = new PdfDocument();
-
     const topPosition = 40;
 
-    console.log(objConfig)
     doc.fontSize(13).font('Courier-Bold').fillColor('gray').text("Division", 260, 45,  {
         paragraphGap: 5,
         width: 110,
@@ -86,25 +84,27 @@ async function makePdf(objConfig, res){
     let granArray =[];
     for(let i = 0; i<objConfig.products.length; i++){
         let array =[];
-        array.push(objConfig.products[i].name, objConfig.products[i].description, objConfig.products[i].cantidad, objConfig.products[i].unidades, `${ formateadorMXN.format(objConfig.products[i].price)}`, `${ formateadorMXN.format(objConfig.products[i].cantidad * objConfig.products[i].price)}`)
+        array.push(objConfig.products[i].description, objConfig.products[i].cantidad, objConfig.products[i].unidades, `${ formateadorMXN.format(objConfig.products[i].price)}`, `${ formateadorMXN.format(objConfig.products[i].cantidad * objConfig.products[i].price)}`)
         granArray.push(array);
     }
     let table = {
-        headers: [ "Producto", "Descripcion", "Cantidad", 'Unidad', 'Precio unitario', 'Importe' ],
+        headers: [ "Descripcion", "Cantidad", 'Unidad', 'Precio unitario', 'Importe' ],
         rows: granArray,
         options: {
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
                 doc.font("Helvetica").fontSize(9).text();
-            },
+            }
         }
     };
 
     //Aqui hace falta un await
     await doc.moveDown().moveDown().moveDown().table(table, { 
         width: 475,
-        columnsSize: [79.16, 120.84, 58.32, 58.32, 79.16, 79.16 ]
+        columnsSize: [185, 70, 70, 70, 75],
     })
     // // Tener cuidado con esto (final) -----------------------------------------------------------------------
+
+    doc.moveDown();
 
     doc.font('Helvetica-Bold').text(`Subtotal ${formateadorMXN.format(calculateSubTotal(objConfig.products))}`, {
         align: 'right',
@@ -118,7 +118,11 @@ async function makePdf(objConfig, res){
     doc.text(`TOTAL ${formateadorMXN.format(calculateTotal(calculateSubTotal(objConfig.products)))}`, {
         align: 'right'
     })
-    doc.text('TIEMPO DE ENTREGA:')
+
+    doc.moveDown();
+    doc.text('TIEMPO DE ENTREGA:', {
+        lineGap: 5
+    })
     doc.font('Helvetica').text(`${objConfig.otherData.tiempoDeEntrega}`)
 
     doc.moveDown().moveDown().moveDown().moveDown().moveDown();

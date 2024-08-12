@@ -3,7 +3,7 @@
         {
             "model": "Gerflor model A",
             "description": "Piso conductivo marca gerflor de 2mm espesor, bla, bla, bla",
-            "price": 450,
+            "price": 40,
             "colors": ["azul", "verde", "beige"],
             "unidades": "m2"
         }, 
@@ -20,19 +20,28 @@
         {
             "model": "NH mod vr615",
             "description": "Protector contra camillas modelo vdasflkj asdklf ak ñls",
-            "price": 450,
+            "price": 45,
             "colors": ["azul", "verde", "beige"],
             "unidades": "ml"
 
 
         }, 
         {
-            "model": "Nh mode vr-120",
+            "model": "Nh mod vr-120",
             "description": "Esquineros blanalfnlkasd faldf",
             "price": 600,
             "colors": ["azul", "verde", "beige"],
             "unidades": "ml"
 
+        }
+    ],
+    "cortinas": [
+        {
+            "model": "Biostatic-ultra",
+            "description": "Cortinas antibacterial Biostatic-ultra",
+            "price": 261.23,
+            "colors": ["azul", "verde", "beige"],
+            "unidades": "m2"    
         }
     ]
 }

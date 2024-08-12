@@ -10,14 +10,19 @@ const dbProducts = JSON.parse(data);
 
 //function that convert simple object to object ready for PDF
 
-function convertObjectBeforePdf(simpleObject){
-    let workObj = simpleObject;
+async function convertObjectBeforePdf(simpleObject){
+    let workObj = {...simpleObject};
+         
+    const dataGet = await fetch("https://mx.dolarapi.com/v1/cotizaciones/usd")
+    const dataJson = await dataGet.json()
+
     workObj.products.forEach((product) => {
-        product.price = dbProducts.pisos.filter((dbProduct)=>{return dbProduct.model == product.model})[0].price
-        product.description = dbProducts.pisos.filter((dbProduct)=>{return dbProduct.model == product.model})[0].description
-        product.unidades = dbProducts.pisos.filter((dbProduct)=>{return dbProduct.model == product.model})[0].unidades
+        product.price = dbProducts[product.name].filter((dbProduct)=>{return dbProduct.model == product.model})[0].price
+        product.description = dbProducts[product.name].filter((dbProduct)=>{return dbProduct.model == product.model})[0].description
+        product.unidades = dbProducts[product.name].filter((dbProduct)=>{return dbProduct.model == product.model})[0].unidades
     });
+
     
-    return simpleObject
+    return workObj
 }
 export default convertObjectBeforePdf

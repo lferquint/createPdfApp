@@ -5,10 +5,9 @@ import convertObjectBeforePdf from '../utils/converObjectBeforePdf.js';
 const router = express.Router();
 
 //route to make PDF
-router.use('/hello', (req, res)=>{
+router.post('/hello', async (req, res)=>{
     // Pasando el body del la peticion a una funcion que transforma la data
-    const objToPdf = convertObjectBeforePdf(req.body);
-
+    const objToPdf = await convertObjectBeforePdf(req.body);
     //Pasando un objeto de tipo PDF
 
 

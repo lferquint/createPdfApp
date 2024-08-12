@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "pdfkit": "^0.15.0",
     "pdfkit-table": "^0.1.99"
